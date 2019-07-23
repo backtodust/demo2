@@ -20,10 +20,7 @@ import com.example.entity.Room;
 import com.example.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,7 +30,7 @@ import java.util.List;
  * @author fengshuonan
  * @Date 2017年2月17日20:27:22
  */
-@Controller
+@RestController
 @RequestMapping("/book")
 public class BookController {
     @Autowired
@@ -43,7 +40,7 @@ public class BookController {
     @RequestMapping(value = "/addroom")
     @ResponseBody
 
-    public String addbook(Room room) {
+    public String addroom(Room room) {
         if(roomservice.addRoom(room)==0)
 
         return "SuccessResponseData.success()";
@@ -52,7 +49,7 @@ public class BookController {
    @RequestMapping(value = "/delete")
     @ResponseBody
     public String deleteRoom(@RequestParam(value = "roomId") String roomId){
-        if(roomservice.deleteRoom(roomId))
+        if(this.roomservice.deleteRoom(roomId))
         return "delete success";
         return  "error";
    }
@@ -76,9 +73,9 @@ public class BookController {
 
       Room room=roomservice.gerRoom(roomId);
 
-
+           if(room!=null)
         return room;
-
+return null;
     };
     @RequestMapping(value = "/likeBid")
     @ResponseBody

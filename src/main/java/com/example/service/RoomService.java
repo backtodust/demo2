@@ -29,7 +29,7 @@ public int addRoom(Room room)
 public Room gerRoom(String roomId){
 
         if(roomMapper.getRoom(roomId)!=null)
-        return roomMapper.getRoom(roomId);
+        return this.baseMapper.getRoom(roomId);
         else
             return null;
 
@@ -45,12 +45,12 @@ public List<Room> likeRId(String roomId){
 public int editRoom(String roomId,String roomPrice,String roomLocation,String roomNo) {
     return this.roomMapper.editRoom(roomId,roomPrice,roomLocation,roomNo);
 }
-
+    @Transactional
 public boolean deleteRoom(String roomNo){
-  if(this.baseMapper.deleteById(roomNo)==0)
-      return false;
-  else
+  if(this.removeById(roomNo))
       return true;
+  else
+      return false;
 }
 
 
