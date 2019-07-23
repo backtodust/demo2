@@ -13,23 +13,26 @@ import com.baomidou.mybatisplus.annotation.TableName;
  public class Room {
 
    @TableId(value = "room_no",type= IdType.AUTO)
-   private String roomNo;
+   private int roomNo;
+
     @TableField("room_id")
     private String roomId;
 
    @TableField("room_type")
    private String roomType;
-   @TableField("room_state")
+
+
+    @TableField("room_state")
    private String roomState;
    @TableField("room_price")
-   private String roomPrice;
+   private double roomPrice;
    @TableField("room_location")
    private String roomLocation;
 
 
 
 
-   @Override
+    @Override
    public String toString() {
       return "Room{" +
               "roomId='" + roomId + '\'' +
@@ -40,6 +43,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
               ", roomNo='" + roomNo + '\'' +
               '}';
    }
+    public void setRoomNo(int roomNo) {
+        this.roomNo = roomNo;
+    }
+    public long getRoomNo() {
+        return roomNo;
+    }
+
+    public void setRoomPrice(double roomPrice) {
+        this.roomPrice = roomPrice;
+    }
 
    public String getRoomId() {
       return roomId;
@@ -65,13 +78,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
       this.roomState = roomState;
    }
 
-   public String getRoomPrice() {
-      return roomPrice;
-   }
 
-   public void setRoomPrice(String roomPrice) {
-      this.roomPrice = roomPrice;
-   }
 
    public String getRoomLocation() {
       return roomLocation;
@@ -79,14 +86,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
    public void setRoomLocation(String roomLocation) {
       this.roomLocation = roomLocation;
-   }
-
-   public String getRoomNo() {
-      return roomNo;
-   }
-
-   public void setRoomNo(String roomNo) {
-      this.roomNo = roomNo;
    }
 
     public Room() {

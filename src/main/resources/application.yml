@@ -3,13 +3,21 @@ server:
   servlet:
     context-path: /
 spring:
+  thymeleaf:
+    prefix: classpath:/pages/
+    cache: false
+    mode: LEGACYHTML5
+    servlet:
+      content-type: text/html
+
+
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/hotel?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
     password: root
 
-mybatis:
+mybatis-plus:
 
   mapper-locations: classpath*:/mapping/*.xml
   #MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名

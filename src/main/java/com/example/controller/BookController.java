@@ -30,8 +30,8 @@ import java.util.List;
  * @author fengshuonan
  * @Date 2017年2月17日20:27:22
  */
-@RestController
-@RequestMapping("/book")
+@Controller
+@RequestMapping("/room")
 public class BookController {
     @Autowired
     private RoomService roomservice;
@@ -46,9 +46,13 @@ public class BookController {
         return "SuccessResponseData.success()";
         else return "已有的房间号！";
     }
+    @RequestMapping(value ="/admin" ,method = RequestMethod.GET)
+    public String admin(){
+        return "admin";
+    }
    @RequestMapping(value = "/delete")
     @ResponseBody
-    public String deleteRoom(@RequestParam(value = "roomId") String roomId){
+    public String deleteRoom(@RequestParam(value = "roomId") int roomId){
         if(this.roomservice.deleteRoom(roomId))
         return "delete success";
         return  "error";
@@ -60,7 +64,7 @@ public class BookController {
     @ResponseBody
    public List<Room> getAll(){
 
-      List<Room> rooms=roomservice.getall();
+      List<Room> rooms=roomservice.getAll();
       for(Room room:rooms)
           System.out.println(room.toString());
           return rooms;

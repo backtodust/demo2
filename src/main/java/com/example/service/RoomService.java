@@ -21,7 +21,7 @@ public class RoomService extends ServiceImpl<RoomMapper,Room> {
 public int addRoom(Room room)
 {
     if(roomMapper.getRoom(room.getRoomId())==null) {
-        this.baseMapper.insert(room);
+        roomMapper.insert(room);
         return 0;
     }
     return -1;
@@ -29,12 +29,12 @@ public int addRoom(Room room)
 public Room gerRoom(String roomId){
 
         if(roomMapper.getRoom(roomId)!=null)
-        return this.baseMapper.getRoom(roomId);
+        return roomMapper.getRoom(roomId);
         else
             return null;
 
 }
-public List<Room> getall(){
+public List<Room> getAll(){
     return roomMapper.getAll();
 }
 
@@ -46,8 +46,8 @@ public int editRoom(String roomId,String roomPrice,String roomLocation,String ro
     return this.roomMapper.editRoom(roomId,roomPrice,roomLocation,roomNo);
 }
     @Transactional
-public boolean deleteRoom(String roomNo){
-  if(this.removeById(roomNo))
+public boolean deleteRoom(long roomNo){
+  if(roomMapper.deleteById(roomNo)!=0)
       return true;
   else
       return false;
